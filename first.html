@@ -3,29 +3,31 @@
 <head>
 	<script type="text/javascript" src="scripts/angular.js"></script>
 	<script type="text/javascript" src="scripts/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
 	<title></title>
 </head>
 <body ng-controller="myController">
+	Rows to display:
+	<input type="number" name="" step="1" min="0" max="5" ng-model="rowLimit" />
+	<br /> 
+	<br />
 	<table>
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Like</th>
-				<th>Dislike</th>
-				<th>Like/Dislike</th>
-
+				<th>Date of Birth</th>
+				<th>Gender</th>
+				<th>Salary(number)</th>
+				<th>Salary(currency)</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="technology in technologies">
-				<td>{{technology.name}}</td>
-				<td>{{technology.likes}}</td>				
-				<td>{{technology.dislikes}}</td>
-				<td>
-					<input type="button" value="like" ng-click="incrementlikes(technology)">
-					<input type="button" value="dislike" ng-click="incrementdislikes(technology)">
-				</td>
-
+			<tr ng-repeat="employee in employees | limitTo:rowLimit">
+				<td>{{employee.name }}</td>
+				<td>{{employee.dateOfBirth | date:dd/MM/yyyy }}</td>
+				<td>{{employee.gender | lowercase}}</td>
+				<td>{{employee.salary|number:2}}</td>
+				<td>{{employee.salary| currency}}</td>
 			</tr>
 		</tbody>
 	</table>
