@@ -7,26 +7,20 @@
 	<title></title>
 </head>
 <body ng-controller="myController">
-	Order BY:<select ng-model="sortColumn">
-				<option value="name">Name</option>
-				<option value="gender">Gender</option>
-				<option value="dateOfBirth">Date Of Birth</option>
-				<option value="-salary">Salary</option>
-	</select>
-	<!-- <input type="number" name="" step="1" min="0" max="5" ng-model="rowLimit" /> -->
-	<br /> 
-	<br />
+	
 	<table>
 		<thead>
 			<tr>
-				<th>Name</th>
+				<th ng-click="sortData('name')">
+					Name <div ng-class="getsortClass('name')"></div>
+				</th>
 				<th>Date of Birth</th>
 				<th>Gender</th>
 				<th>Salary(number)</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="employee in employees | orderBy: sortColumn ">
+			<tr ng-repeat="employee in employees | orderBy: sortColumn:reverseSort ">
 				<td>{{employee.name }}</td>
 				<td>{{employee.dateOfBirth | date:dd/MM/yyyy }}</td>
 				<td>{{employee.gender | lowercase}}</td>
